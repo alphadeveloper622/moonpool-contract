@@ -29,6 +29,11 @@ async function main() {
   );
   await reception.deployed();
   console.log("reception: ", reception.address);
+
+  const Tour = await ethers.getContractFactory("Tournament");
+  const tour = await Tour.deploy(owner.address, token.address);
+  await tour.deployed();
+  console.log("tour: ", tour.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
@@ -40,6 +45,7 @@ main().catch((error) => {
 
 // Rinkedby
 
-// token:  0x78Ac2cA7C83D5827B0685651B24b14C09643726f
-// reception:  0x1a512E2c720477eb87020685F279F40327FAd61C
+// token:  0x78d15Ad8A21A44CF83B801505fc8D350c5a4e273
+// reception:  0x5e84B58556a9Fde377D9EC571ac281c621607DDE
+// tour:  0x4bAeDc67A06a98Cd5B54f4c1e17cb101eF503a71
 
