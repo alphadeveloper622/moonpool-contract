@@ -60,4 +60,11 @@ contract Tournament is Ownable {
     tours[databaseId].totalDeposit = tours[databaseId].totalDeposit.add(amount);
     joined[databaseId][msg.sender] = true;
   }
+
+  function claim(string memory databaseId, uint256 place) public {
+    require(tours[databaseId].winners[place] == _msgSender(), "You're not winner.");
+    uint256 amount = tours[databaseId].rewards[place];
+    tours[databaseId].rewards[place] = 0;
+    token.safeTransfer(_msgSender(), amount);
+  }
 }
